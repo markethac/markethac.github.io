@@ -22,6 +22,27 @@
     <script src="./index.js"></script>
   </body>
   <script>
+    function modifyWebGLParameters() {
+      const getParameter = WebGLRenderingContext.prototype.getParameter;
+      WebGLRenderingContext.prototype.getParameter = function (parameter) {
+        if (parameter === 37445) {
+          return 'Google Inc.';
+        }
+        if (parameter === 37446) {
+          return 'ANGLE (Intel HD Graphics 620 Direct3D11 vs50 ps50) ';
+        }
+        return getParameter.apply(this, arguments);
+      };
+    }
+
+    function injectScript(fn) {
+      const script = document.createElement('script');
+      script.text = `(${fn.toString()})();`;
+      document.documentElement.appendChild(script);
+      script.parentNode.removeChild(script);
+    }
+
+    injectScript(modifyWebGLParameters);
     const did = new URL(window.location.href).searchParams.get('device_id');
     function parseURL(e) {
       var n = {};
