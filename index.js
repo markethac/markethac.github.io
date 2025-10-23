@@ -58112,147 +58112,90 @@ var t,
           modified_img_width: 0,
           reply: [],
           drag_width: 0,
-          postData: {
-            hk: n.H[2252].v.call(void 0) ? 1 : 0,
-            lo: {
-              referer:
-                (null === (C = document) || void 0 === C
+          postData: (function () {
+            var basePostData = {
+              hk: n.H[2252].v.call(void 0) ? 1 : 0,
+              lo: {
+                referer:
+                  (null === (C = document) || void 0 === C
+                    ? void 0
+                    : C.referrer) || '',
+                location:
+                  (null === (Q = location) || void 0 === Q ? void 0 : Q.href) ||
+                  '',
+                topref: q,
+                frame: window.self === window.top ? 0 : 1,
+              },
+              br:
+                null === (E = window) ||
+                void 0 === E ||
+                null === (I = E.navigator) ||
+                void 0 === I
                   ? void 0
-                  : C.referrer) || '',
-              location:
-                (null === (Q = location) || void 0 === Q ? void 0 : Q.href) ||
-                '',
-              topref: q,
-              frame: window.self === window.top ? 0 : 1,
-            },
-            br:
-              null === (E = window) ||
-              void 0 === E ||
-              null === (I = E.navigator) ||
-              void 0 === I
-                ? void 0
-                : I.userAgent,
-            bt: {
-              status: 0,
-            },
-            si: {
-              bodyClientHeight:
-                (null === (b = document) ||
-                void 0 === b ||
-                null === (p = b.body) ||
-                void 0 === p
-                  ? void 0
-                  : p.clientHeight) || 0,
-              screenWidth:
-                (null === (y = window) ||
-                void 0 === y ||
-                null === (D = y.screen) ||
-                void 0 === D
-                  ? void 0
-                  : D.width) || 0,
-              innerHeight: window.innerHeight,
-              screenHeight:
-                (null === (m = window) ||
-                void 0 === m ||
-                null === (k = m.screen) ||
-                void 0 === k
-                  ? void 0
-                  : k.height) || 0,
-              screenLeft:
-                null === (M = window) || void 0 === M ? void 0 : M.screenLeft,
-              outerWidth:
-                null === (H = window) || void 0 === H ? void 0 : H.outerWidth,
-              clientHeight:
-                (null === (O = document) ||
-                void 0 === O ||
-                null === (S = O.documentElement) ||
-                void 0 === S
-                  ? void 0
-                  : S.clientHeight) || 0,
-              innerWidth:
-                (null === (j = window) || void 0 === j
-                  ? void 0
-                  : j.innerWidth) || 0,
-              bodyClientWidth:
-                (null === (K = document) ||
-                void 0 === K ||
-                null === (F = K.body) ||
-                void 0 === F
-                  ? void 0
-                  : F.clientWidth) || 0,
-              availWidth:
-                (null === (N = window) ||
-                void 0 === N ||
-                null === (G = N.screen) ||
-                void 0 === G
-                  ? void 0
-                  : G.availWidth) || 0,
-              clientWidth:
-                (null === (L = document) ||
-                void 0 === L ||
-                null === (x = L.documentElement) ||
-                void 0 === x
-                  ? void 0
-                  : x.clientWidth) || 0,
-              outerHeight:
-                (null === (J = window) || void 0 === J
-                  ? void 0
-                  : J.outerHeight) || 0,
-              docClientWidth:
-                (null === (R = document) ||
-                void 0 === R ||
-                null === (Y = R.documentElement) ||
-                void 0 === Y
-                  ? void 0
-                  : Y.clientWidth) || 0,
-              screenTop:
-                (null === (U = window) || void 0 === U
-                  ? void 0
-                  : U.screenTop) || 0,
-              availHeight:
-                (null === (P = window) ||
-                void 0 === P ||
-                null === (T = P.screen) ||
-                void 0 === T
-                  ? void 0
-                  : T.availHeight) || 0,
-              docClientHeight:
-                (null === (_ = document) ||
-                void 0 === _ ||
-                null === (W = _.documentElement) ||
-                void 0 === W
-                  ? void 0
-                  : W.clientHeight) || 0,
-            },
-            vci: (function () {
-              return ln(15656, n, this, arguments, 0, 80);
-            })(),
-            cc: {
-              ndi: 0,
-              debugInfo: 'false',
-            },
-            fi: [],
-            mc: [],
-            mu: [],
-            tc: [],
-            tu: [],
-            mm: [],
-            ugt: 0,
-            tmv: [],
-            mp: [],
-            gy: [],
-            gy2: [],
-            tql: -1,
-            cp: {
-              p: (function () {
-                return ln(16552, n, this, arguments, 0, 48);
+                  : I.userAgent,
+              bt: {
+                status: 0,
+              },
+              si: {
+                bodyClientHeight: 0,
+                screenWidth: 360,
+                innerHeight: 666,
+                screenHeight: 806,
+                screenLeft: 0,
+                outerWidth: 360,
+                clientHeight: 666,
+                innerWidth: 360,
+                bodyClientWidth: 344,
+                availWidth: 360,
+                clientWidth: 360,
+                outerHeight: 666,
+                docClientWidth: 360,
+                screenTop: 0,
+                availHeight: 806,
+                docClientHeight: 666,
+              },
+              vci: (function () {
+                return ln(15656, n, this, arguments, 0, 80);
               })(),
-              c: '',
-            },
-            hash: '',
-            tk: '',
-            tm: z,
-          },
+              cc: {
+                ndi: 0,
+                debugInfo: 'false',
+              },
+              fi: [],
+              mc: [],
+              mu: [],
+              tc: [],
+              tu: [],
+              mm: [],
+              ugt: 0,
+              tmv: [],
+              mp: [],
+              gy: [],
+              gy2: [],
+              tql: -1,
+              cp: {
+                p: (function () {
+                  return ln(16552, n, this, arguments, 0, 48);
+                })(),
+                c: '',
+              },
+              hash: '',
+              tk: '',
+              tm: z,
+            };
+            if ('undefined' == typeof window) return basePostData;
+            var env = window.captchaEnvOverrides;
+            if (!env || !env.postData) return basePostData;
+            var overrideCopy = Object(n.G.G.G.G.H[2198].v.a)({}, env.postData),
+              hasSi = Object.prototype.hasOwnProperty.call(overrideCopy, 'si'),
+              overrideSi = hasSi ? overrideCopy.si : void 0;
+            hasSi && delete overrideCopy.si;
+            var merged = Object(n.G.G.G.G.H[2198].v.a)(
+              basePostData,
+              overrideCopy,
+            );
+            return hasSi && (merged.si = overrideSi), merged;
+          })(),
         }),
           (n.H[2274].v = {
             captcha: Object(n.H[2273].v.createModel)({
