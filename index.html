@@ -1,165 +1,139 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-cn">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="icon" href="data:image/ico;base64,aWNv" />
-    <title>verify captcha</title>
-    <style>
-      #__vconsole div.vc-switch {
-        z-index: 999999;
-      }
-    </style>
-  </head>
-  <script>
-    window.__htmlStartTime = new Date().getTime();
-  </script>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="icon" href="data:image/ico;base64,aWNv" />
+		<title>verify captcha</title>
+		<style>
+			#__vconsole div.vc-switch {
+				z-index: 999999;
+			}
+		</style>
+	</head>
+	<script>
+		window.__htmlStartTime = new Date().getTime();
+	</script>
 
-  <body>
-    <div id="captcha_container"></div>
-    <script src="./index.js"></script>
-  </body>
-  <script>
-    function modifyWebGLParameters() {
-      const getParameter = WebGLRenderingContext.prototype.getParameter;
-      WebGLRenderingContext.prototype.getParameter = function (parameter) {
-        if (parameter === 37445) {
-          return 'Google Inc.';
-        }
-        if (parameter === 37446) {
-          return 'ANGLE (Intel HD Graphics 620 Direct3D11 vs50 ps50) ';
-        }
-        return getParameter.apply(this, arguments);
-      };
-    }
-
-    function injectScript(fn) {
-      const script = document.createElement('script');
-      script.text = `(${fn.toString()})();`;
-      document.documentElement.appendChild(script);
-      script.parentNode.removeChild(script);
-    }
-
-    injectScript(modifyWebGLParameters);
-    const did = new URL(window.location.href).searchParams.get('device_id');
-    function parseURL(e) {
-      var n = {};
-      if ('string' != typeof e || 0 === e.length) return n;
-      for (var o = /\+/g, r = (e = e.split('&')).length, c = 0; c < r; ++c) {
-        var i,
-          t,
-          a,
-          s,
-          l = e[c].replace(o, '%20'),
-          d = l.indexOf('=');
-        d >= 0 && ((i = l.substring(0, d)), (t = l.substring(d + 1, l.length))),
-          (a = decodeURIComponent(i)),
-          (s = decodeURIComponent(t)),
-          (n[a] = s);
-      }
-      return n;
-    }
-    var queryObj = {
-        verify_host: 'https://oec22-normal-alisg.tokopediax.com/',
-        aid: '1180',
-        lang: 'id',
-        app_name: 'trill',
-        locale: 'in_ID',
-        ch: 'googleplay',
-        channel: 'googleplay',
-        vc: '37.8.5',
-        app_version: '37.8.5',
-        iid: '7563922212428777228',
-        did,
-        region: 'sg',
-        userMode: '258',
-        use_native_report: '1',
-        use_jsb_request: '1',
-        orientation: '1',
-        resolution: '900*1600',
-        sdk_version: '3.0.5.i18n',
-        os_version: '28',
-        device_brand: 'samsung',
-        device_model: 'SM-G988N',
-        os_name: 'Android',
-        version_code: '3785',
-        device_type: 'SM-G988N',
-        device_platform: 'Android',
-        os_type: '0',
-        native_sdk_channel: 'oec',
-        verify_data:
-          '{"code":"10000","from":"oec_whale","sub_from":"dispose_center","type":"verify","region":"sg","subtype":"slide","detail":"KIDZU8PlvyhPklG2nI5Pn9loMq5Qn*IAjrpo6KZHC9QIMV89GgdfnuMJZFgKPpd8DP7qJmom6z-fCzCMhIco4K9UZKV4mjAp9wwyLT06OYj-Ir6nrWLXYxL-O2Nz-aWXLzIwFvdSGijBHux6tvxSBRn-q-bopy1XeN8Kzibpsz4TlY9cW6EVp2JzfBmSrSPrHGpWWjphr0aGir9rK*T2DR*2J6Hu4B152S1kFleTMEg4NiNfY7M4wIYY*l1wvf2r6sUCCDusS8JXxOp-Z8Fo5C0RDW6iOk7dNVMLEG5Zi0tyT*qUUWRnLaaFx07cbDLAk9CJ0yBXWgZqpoTqJENTQJDM5bfjtuJ9xoyWeGnSwqlqb*z2yOAfxADGI0ehnJgPgqhIoPwunfB0RrSlnxWTIsEVyfWmkkEKFQLoqudyjoVOCEx0ytVIFnb5bYFdViO7EbXRBK9qbjGuarnuyuIw7hE-3Gl2g4EFXSGsCUELjRs757nyMa7gHqtQqTJKAtg-EVtlkrd6eQUDLHbgLx8CAaMVoOJFjHaZjea3HaFnIUJyvDGddEgFtm6-GHf13KDMh3ECeEeJcrJpMqv*tgfrGGq27eLdNWQjCD91PVhobYshqndwVRvz1s2O8jXbIzRPYnmGCkJUvz5nLi7gBlsztlXBF2wrapCd72pE7rvuSW-YZhYSM-MHCfY3uzJgw2UR3Y2ROSfk8TwmB3EUMdV4nqwQHesG8OnuIq6eEt8-3EOu7*pgExo2hJGfvYDl-ubUr1d3YHjnw5B-j1S84Q27TPvKU98obHhyFVAI6ophIP48WdckLfN99T2qsaPSFynsv0BlhYFkVVTkro5i*cNG5Q2idK*Ha3VBA4ehHo9-e9d-is4hnxrnVGusxog12lIXYqeiHvN-V6POHhg1t3Wbi7EC8wbfVdNxl8EvmO*vzXOwyfEMipGdpZL-kh1b8dk8SM4IuVa5zt46S88Aa8d4xZsfJHMI7d2dJvOF1QU3cvftfdUBqLrWa-duDrg.","server_sdk_env":"{\\"idc\\":\\"my2\\",\\"region\\":\\"ALISG\\",\\"server_type\\":\\"business\\"}","log_id":"20251021142215F9D4D3F0659FD6D4540A","extension":{"setting_version":"3.0.55-1.0.0.661"}}',
-      },
-      captchaTheme = {},
-      secondVerifyH5Theme = {};
-    if (queryObj.theme)
-      try {
-        captchaTheme = JSON.parse(queryObj.theme);
-      } catch (e) {}
-    window.initVerifyOptions({
-      commonOptions: {
-        aid: 1180,
-        iid: '7563922212428777228',
-        did,
-        app_name: 'trill',
-        sdk_version: '3.0.5.i18n',
-        ch: 'googleplay',
-        os_type: 0,
-      },
-      captchaOptions: {
-        showMode: queryObj.showMode,
-        host: queryObj.verify_host,
-        ele: 'captcha_container',
-        lang: queryObj.lang || '',
-        theme: captchaTheme,
-        successCb: function (e) {},
-        errorCb: function (e) {},
-        closeCb: function () {},
-        feedbackSubmitCb: function () {},
-      },
-      secondVerifyWebOptions: {
-        scene: 'xxx',
-        callBack: function (e) {
-          console.log(e);
-        },
-        closeCallBack: function () {
-          console.log('close');
-        },
-        commonParams: {
-          webId: 12333,
-        },
-      },
-      secondVerifyH5Options: {
-        bHost: '',
-        theme: secondVerifyH5Theme,
-        scene: 'global_payment',
-        locale: 'en',
-        redirect_url: '',
-      },
-    });
-    var verify_data = {
-      code: '20000',
-      from: 'shark_admin',
-      type: 'verify',
-      version: '1',
-      region: 'sg',
-      subtype: 'mobile_sms_verify',
-      verify_event: 'xxx',
-      fp: 'verify_asdadsa121',
-      scene: 'xxx',
-      detail: {},
-      server_sdk_env: '{"idc":"boe","region":"BOE","server_type":"business"}',
-      verify_ticket: 'xyz',
-      channel_mobile: 'xxxx',
-      sms_content: 'xxxx',
-      mobile: '138****9104',
-      email: '133****722@qq.com',
-    };
-    window.renderCaptcha({
-      challenge_code: +queryObj.challenge_code || 3058,
-      verify_data: queryObj.verify_data,
-    });
-  </script>
+	<body>
+		<div id="captcha_container"></div>
+		<script src="https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/oec-captcha-ttweb/captcha/sg/3.0.57/1.0.0.678/captcha.js"></script>
+	</body>
+	<script>
+		function parseURL(e) {
+			var n = {};
+			if ('string' != typeof e || 0 === e.length) return n;
+			for (var o = /\+/g, r = (e = e.split('&')).length, c = 0; c < r; ++c) {
+				var i,
+					t,
+					a,
+					s,
+					l = e[c].replace(o, '%20'),
+					d = l.indexOf('=');
+				d >= 0 && ((i = l.substring(0, d)), (t = l.substring(d + 1, l.length))),
+					(a = decodeURIComponent(i)),
+					(s = decodeURIComponent(t)),
+					(n[a] = s);
+			}
+			return n;
+		}
+		var queryObj = {
+				verify_host: 'https://oec22-normal-alisg.tokopediax.com/',
+				aid: '1180',
+				lang: 'id',
+				app_name: 'trill',
+				locale: 'in_ID',
+				ch: 'googleplay',
+				channel: 'googleplay',
+				vc: '37.8.5',
+				app_version: '37.8.5',
+				iid: '7563922212428777228',
+				did: '7576300312338089484',
+				region: 'sg',
+				userMode: '258',
+				use_native_report: '1',
+				use_jsb_request: '1',
+				orientation: '1',
+				resolution: '900*1600',
+				sdk_version: '3.0.5.i18n',
+				os_version: '28',
+				device_brand: 'samsung',
+				device_model: 'SM-G988N',
+				os_name: 'Android',
+				version_code: '3785',
+				device_type: 'SM-G988N',
+				device_platform: 'Android',
+				os_type: '0',
+				native_sdk_channel: 'oec',
+				verify_data:
+					'{"code":"10000","from":"oec_whale","sub_from":"dispose_center","type":"verify","region":"sg","subtype":"slide","detail":"KIDZU8PlvyhPklG2nI5Pn9loMq5Qn*IAjrpo6KZHC9QIMV89GgdfnuMJZFgKPpd8DP7qJmom6z-fCzCMhIco4K9UZKV4mjAp9wwyLT06OYj-Ir6nrWLXYxL-O2Nz-aWXLzIwFvdSGijBHux6tvxSBRn-q-bopy1XeN8Kzibpsz4TlY9cW6EVp2JzfBmSrSPrHGpWWjphr0aGir9rK*T2DR*2J6Hu4B152S1kFleTMEg4NiNfY7M4wIYY*l1wvf2r6sUCCDusS8JXxOp-Z8Fo5C0RDW6iOk7dNVMLEG5Zi0tyT*qUUWRnLaaFx07cbDLAk9CJ0yBXWgZqpoTqJENTQJDM5bfjtuJ9xoyWeGnSwqlqb*z2yOAfxADGI0ehnJgPgqhIoPwunfB0RrSlnxWTIsEVyfWmkkEKFQLoqudyjoVOCEx0ytVIFnb5bYFdViO7EbXRBK9qbjGuarnuyuIw7hE-3Gl2g4EFXSGsCUELjRs757nyMa7gHqtQqTJKAtg-EVtlkrd6eQUDLHbgLx8CAaMVoOJFjHaZjea3HaFnIUJyvDGddEgFtm6-GHf13KDMh3ECeEeJcrJpMqv*tgfrGGq27eLdNWQjCD91PVhobYshqndwVRvz1s2O8jXbIzRPYnmGCkJUvz5nLi7gBlsztlXBF2wrapCd72pE7rvuSW-YZhYSM-MHCfY3uzJgw2UR3Y2ROSfk8TwmB3EUMdV4nqwQHesG8OnuIq6eEt8-3EOu7*pgExo2hJGfvYDl-ubUr1d3YHjnw5B-j1S84Q27TPvKU98obHhyFVAI6ophIP48WdckLfN99T2qsaPSFynsv0BlhYFkVVTkro5i*cNG5Q2idK*Ha3VBA4ehHo9-e9d-is4hnxrnVGusxog12lIXYqeiHvN-V6POHhg1t3Wbi7EC8wbfVdNxl8EvmO*vzXOwyfEMipGdpZL-kh1b8dk8SM4IuVa5zt46S88Aa8d4xZsfJHMI7d2dJvOF1QU3cvftfdUBqLrWa-duDrg.","server_sdk_env":"{\\"idc\\":\\"my2\\",\\"region\\":\\"ALISG\\",\\"server_type\\":\\"business\\"}","log_id":"20251021142215F9D4D3F0659FD6D4540A","extension":{"setting_version":"3.0.55-1.0.0.661"}}',
+			},
+			captchaTheme = {},
+			secondVerifyH5Theme = {};
+		if (queryObj.theme)
+			try {
+				captchaTheme = JSON.parse(queryObj.theme);
+			} catch (e) {}
+		window.initVerifyOptions({
+			commonOptions: {
+				aid: 1128,
+				iid: '0',
+				did: '0',
+			},
+			captchaOptions: {
+				showMode: queryObj.showMode,
+				host: queryObj.verify_host,
+				ele: 'captcha_container',
+				lang: queryObj.lang || '',
+				theme: captchaTheme,
+				successCb: function (e) {},
+				errorCb: function (e) {},
+				closeCb: function () {},
+				feedbackSubmitCb: function () {},
+			},
+			secondVerifyWebOptions: {
+				scene: 'xxx',
+				callBack: function (e) {
+					console.log(e);
+				},
+				closeCallBack: function () {
+					console.log('close');
+				},
+				commonParams: {
+					webId: 12333,
+				},
+			},
+			secondVerifyH5Options: {
+				bHost: '',
+				theme: secondVerifyH5Theme,
+				scene: 'global_payment',
+				locale: 'en',
+				redirect_url: '',
+			},
+		});
+		var verify_data = {
+			code: '20000',
+			from: 'shark_admin',
+			type: 'verify',
+			version: '1',
+			region: 'sg',
+			subtype: 'mobile_sms_verify',
+			verify_event: 'xxx',
+			fp: 'verify_asdadsa121',
+			scene: 'xxx',
+			detail: {},
+			server_sdk_env: '{"idc":"boe","region":"BOE","server_type":"business"}',
+			verify_ticket: 'xyz',
+			channel_mobile: 'xxxx',
+			sms_content: 'xxxx',
+			mobile: '138****9104',
+			email: '133****722@qq.com',
+		};
+		window.renderCaptcha({
+			challenge_code: +queryObj.challenge_code || 3058,
+			verify_data: queryObj.verify_data,
+		});
+	</script>
 </html>
