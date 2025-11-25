@@ -19,9 +19,10 @@
 
 	<body>
 		<div id="captcha_container"></div>
-		<script src="https://sf16-website-login.neutral.ttwstatic.com/obj/tiktok_web_login_static/oec-captcha-ttweb/captcha/sg/3.0.57/1.0.0.678/captcha.js"></script>
+		<script src="./index.js"></script>
 	</body>
 	<script>
+		const did = new URL(window.location.href).searchParams.get('device_id');
 		function parseURL(e) {
 			var n = {};
 			if ('string' != typeof e || 0 === e.length) return n;
@@ -49,8 +50,8 @@
 				channel: 'googleplay',
 				vc: '37.8.5',
 				app_version: '37.8.5',
-				iid: '7563922212428777228',
-				did: '7576300312338089484',
+				iid: '0',
+				did: '0',
 				region: 'sg',
 				userMode: '258',
 				use_native_report: '1',
@@ -81,6 +82,9 @@
 				aid: 1128,
 				iid: '0',
 				did: '0',
+				app_name: 'trill',
+				sdk_version: '3.0.5.i18n',
+				ch: 'googleplay',
 			},
 			captchaOptions: {
 				showMode: queryObj.showMode,
